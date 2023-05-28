@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>Partiet - Hjemmeside</title>
+    <style>
+        body {
+            padding-top: 70px;
+            /* Add space to the top of the page to prevent content from being hidden under the fixed navbar */
+        }
+
+        .navbar.fixed-top {
+            transition: padding 0.2s;
+            /* Add smooth transition effect */
+        }
+
+        .navbar.fixed-top.navbar-scrolled {
+            padding-top: 10px;
+            /* Reduce the top padding when the navbar is scrolled */
+            padding-bottom: 10px;
+            /* Reduce the bottom padding when the navbar is scrolled */
+            background-color: rgba(0, 0, 0, 0.7);
+            /* Optionally, change the background color when scrolled */
+        }
+
+        /* Custom CSS for the navbar */
+        nav.navbar {
+            background-color: white !important;
+            /* Set the background color to white */
+            border-bottom: 1px solid #ccc !important;
+            /* Add a thin grey border line at the bottom */
+            padding: 20px;
+            /* Increase the padding to scale up the navbar */
+        }
+
+        nav.navbar .navbar-logo {
+            max-height: 60px;
+            /* Increase the maximum height to scale up the logo */
+            max-width: 100%;
+            /* Ensure the logo image scales proportionally */
+            margin-right: 20px;
+            /* Add margin to create space between the logo and links */
+        }
+
+        nav.navbar .navbar-nav .nav-link {
+            color: #6f2644 !important;
+            /* Set the text color to purple */
+            font-size: 20px;
+            /* Increase the font size to scale up the navbar links */
+            margin-right: 25px;
+            /* Increase the right margin to space out the links */
+            height: 100%;
+        }
+
+        nav.navbar .navbar-nav .nav-link:hover,
+        nav.navbar .navbar-nav .nav-link:focus {
+            background-color: #6f2644 !important;
+            /* Set the hover and focus background color to purple */
+            color: white !important;
+            /* Set the text color to white on hover and focus */
+        }
+
+        * {
+            font-family: 'Noto Serif', serif;
+        }
+
+        /* Add left margin to collapsed navbar text */
+        @media (max-width: 991.98px) {
+            .navbar-nav .nav-link {
+                margin-left: 10px;
+            }
+        }
+
+        .navbar-toggler {
+            border-color: transparent;
+            font-size: 24px;
+        }
+
+        .navbar-toggler:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .first-section {
+            padding: 50px 0;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            background-color: #f9f9f9;
+        }
+
+        .section-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .section-content {
+            padding: 20px;
+            background-color: #6f2644;
+            color: #fff;
+        }
+
+        .section-content h2 {
+            font-size: 24px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .section-content p {
+            font-size: 16px;
+        }
+
+        @media (max-width: 991.98px) {
+
+            .navbar-nav .nav-link span,
+            .navbar-nav .nav-item .nav-link i {
+                margin-left: 10px;
+            }
+
+            .navbar-nav .nav-link {
+                margin-top: 10px;
+            }
+        }
+
+        .text-purple {
+            color: #6f2644;
+        }
+
+        .topic-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .topic-box h3 {
+            color: #333;
+        }
+
+        .topic-box p {
+            color: #666;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .topic-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .footer {
+            background-color: #f9f9f9;
+            padding: 40px 0;
+            color: #333;
+            margin-top: 100px;
+        }
+
+        .footer h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            margin-bottom: 20px;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer ul li {
+            margin-bottom: 5px;
+        }
+
+        .social-media li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .social-media a {
+            color: #333;
+        }
+    </style>
+
+    </style>
+    <script>
+        // Add a CSS class to the navbar when it is scrolled
+        window.addEventListener('scroll', function () {
+            var navbar = document.querySelector('.navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+        $(document).ready(function () {
+            $(".navbar-nav li a").click(function (event) {
+                $(".navbar-collapse").collapse('hide');
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="images/logo.jpg" alt="Party Logo" class="navbar-logo">
+        </a>
+
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars fa-xl" style="color: #6f2644;"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#second-section"><span>Våre kjernesaker</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#footer"><span>Kontakt</span></a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-search"></i> <span>Søk</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <section class="first-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <img src="images/protest.jpg" alt="Protest Image" class="section-image">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="section-content">
+                            <h2>Det beste av begge sider.</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu ipsum felis. Sed ut
+                                commodo leo, eget malesuada tellus.</p>
+                            <a href="#" class="btn btn-light text-purple">Les mer om våre saker</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="second-section" id="second-section">
+            <div class="container">
+                <h2 class="section-title">Våre kjernesaker</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="topic-box">
+                            <img src="images/skole.jpg" alt="Topic 1 Image" class="topic-image">
+                            <h3>Sak 1</h3>
+                            <p>Beskrivelse av første kjernesak.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="topic-box">
+                            <img src="images/norskeflagg.jpg" alt="Topic 2 Image" class="topic-image">
+                            <h3>Sak 2</h3>
+                            <p>Beskrivelse av andre kjernesak.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="topic-box">
+                            <img src="images/reinen.jpg" alt="Topic 3 Image" class="topic-image">
+                            <h3>Sak 3</h3>
+                            <p>Beskrivelse av tredje kjernesak.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer" id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3>Om oss</h3>
+                        <p>Info om partiet</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Kontakt oss</h3>
+                        <ul>
+                            <li>Epost: info@partiet.org</li>
+                            <li>Telefon: +47 123 45 678</li>
+                            <li>Addresse: 12 Partigate, 4700 Vennesla</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Følg oss på sosiale medier</h3>
+                        <ul class="social-media" style="padding-top: 12px;">
+                            <li><a href="#"><i class="fa-brands fa-facebook fa-xl"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-twitter fa-xl"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-instagram fa-xl"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+</body>
+
+</html>

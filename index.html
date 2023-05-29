@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 
 <head>
     <meta charset="UTF-8">
@@ -12,8 +12,13 @@
         rel="stylesheet">
     <link rel="stylesheet" href="fontawesome-free-6.4.0-web/css/all.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="manifest" href="favicons/site.webmanifest">
 
     <title>Partiet - Hjemmeside</title>
     <style>
@@ -96,9 +101,13 @@
 
         .first-section {
             padding: 50px 0;
-            margin-top: 40px;
-            margin-bottom: 40px;
             background-color: #f9f9f9;
+        }
+
+        section {
+
+            margin-top: 40px;
+            margin-bottom: 70px;
         }
 
         .section-image {
@@ -200,11 +209,15 @@
         .social-media a {
             color: #333;
         }
+
+        .image-description {
+            color: #888;
+            font-style: italic;
+        }
     </style>
 
     </style>
     <script>
-        // Add a CSS class to the navbar when it is scrolled
         window.addEventListener('scroll', function () {
             var navbar = document.querySelector('.navbar');
             if (window.scrollY > 10) {
@@ -213,6 +226,7 @@
                 navbar.classList.remove('navbar-scrolled');
             }
         });
+
         $(document).ready(function () {
             $(".navbar-nav li a").click(function (event) {
                 $(".navbar-collapse").collapse('hide');
@@ -225,7 +239,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
         <a class="navbar-brand" href="#">
-            <img src="images/logo.jpg" alt="Party Logo" class="navbar-logo">
+            <img src="images/logo.png" alt="Party Logo" class="navbar-logo">
         </a>
 
         <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
@@ -240,6 +254,10 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#footer"><span>Kontakt</span></a>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#partileder"><span>Om partileder</span></a>
                 </li>
             </ul>
 
@@ -262,8 +280,7 @@
                     <div class="col-md-6">
                         <div class="section-content">
                             <h2>Det beste av begge sider.</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu ipsum felis. Sed ut
-                                commodo leo, eget malesuada tellus.</p>
+                            <p>Noe generell info om hva partiet står for og verdiene de står for.</p>
                             <a href="#" class="btn btn-light text-purple">Les mer om våre saker</a>
                         </div>
                     </div>
@@ -294,6 +311,24 @@
                             <h3>Sak 3</h3>
                             <p>Beskrivelse av tredje kjernesak.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="leader-section" id="partileder">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="section-content">
+                            <h3>"Et sitat fra partileder"</h3>
+                            <p>Informasjon om partilederen lorem ipsum dolor sit amet.</p>
+                            <a href="#" class="btn btn-light text-purple">Les mer om partilederen vår</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="images/fuhrer.png" alt="Party Leader" class="leader-image"
+                            style="max-width: 100%; height: auto;">
+                        <p class="image-description">Vår kjære leder ikledd rustning.</p>
                     </div>
                 </div>
             </div>

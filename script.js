@@ -10,10 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     $(document).ready(function () {
-        $(".navbar-nav li a").click(function (event) {
-            $(".navbar-collapse").collapse('hide');
+        $(".navbar-nav li a").on('click', function () {
+            if ($('.navbar-collapse').hasClass('show')) {
+                $('.navbar-collapse').collapse('hide');
+            }
         });
     });
+
 
     // Fetch the content of navbar.html
     fetch("navbar.html")

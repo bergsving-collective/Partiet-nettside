@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.0.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
+    <link rel="manifest" href="../favicons/site.webmanifest">
+    <script src="../js/script.js"></script>
+
+    <title>Artikkel Eksempel - Partiet</title>
+
+    <!-- Include the head section from your previous page here -->
+    <style>
+        .article-content {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .article-content h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .article-content h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .article-image {
+            margin-bottom: 20px;
+        }
+
+        .article-image img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .image-description {
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .article-text p {
+            margin-bottom: 10px;
+        }
+
+        main {
+            padding-top: 70px;
+            /* Adjust this value as needed */
+        }
+
+        article .article-text p {
+            line-height: 2;
+            margin-bottom: 40px;
+        }
+
+        article {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .article-content {
+            flex: 1;
+            margin-right: 0;
+        }
+
+        .author-info {
+            margin-top: 50px;
+            margin-left: 20px;
+            flex-shrink: 0;
+            margin-right: auto;
+        }
+
+        /* Media query for screens with maximum width of 768px */
+        @media (max-width: 800px) {
+            main {
+                padding-top: 43px;
+                /* Adjust this value as needed */
+            }
+
+            article {
+                flex-direction: column;
+            }
+
+            .author-info {
+                align-self: flex-start;
+                margin-top: -20px;
+                margin-bottom: -80px;
+                margin-left: auto;
+            }
+        }
+
+        .author-image img {
+            width: 75px;
+            border-radius: 50%;
+        }
+
+        .author-info p {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="navbar-placeholder"></div> <!-- Header placeholder -->
+    </header>
+
+    <main>
+        <article>
+            <div class="article-content">
+                <h1 class="fw-bolder">- Dette er rett og slett forsøk på enevelde</h1>
+                <h2 class="me-md-0">Vedum kommenterer på Partiets manifest.</h2>
+
+                <div class="article-image">
+                    <img src="https://image.dagensmedisin.no/531711.jpg?imageId=531711&width=960&height=548&format=jpg"
+                        alt="Article Image">
+                    <p class="image-description">Trygve Slagsvold Vedum (Sp) langer ut mot Partiets kontroversielle
+                        manifest. <span class="text-light-emphasis">Foto: Rodrigo Freitas /
+                            NTB</span></p>
+                </div>
+
+                <div class="article-text">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, assumenda aliquid necessitatibus
+                        architecto aspernatur veritatis delectus suscipit, tenetur quia dignissimos quas iusto,
+                        explicabo molestias. Porro velit maxime commodi. Doloribus, temporibus?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, assumenda aliquid necessitatibus
+                        architecto aspernatur veritatis delectus suscipit, tenetur quia dignissimos quas iusto,
+                        explicabo molestias. Porro velit maxime commodi. Doloribus, temporibus?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, assumenda aliquid necessitatibus
+                        architecto aspernatur veritatis delectus suscipit, tenetur quia dignissimos quas iusto,
+                        explicabo molestias. Porro velit maxime commodi. Doloribus, temporibus?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, assumenda aliquid necessitatibus
+                        architecto aspernatur veritatis delectus suscipit, tenetur quia dignissimos quas iusto,
+                        explicabo molestias. Porro velit maxime commodi. Doloribus, temporibus?</p>
+                </div>
+            </div>
+
+            <aside class="author-info">
+                <div class="author-image">
+                    <img src="../images/fører_ikon.jpg" alt="Forfatter bilde">
+                </div>
+                <div class="author-name">
+                    <p>Skrevet av: Partifører</p>
+                </div>
+                <div class="publish-time">
+                    <p>Publisert: 28. Mai 2023 kl. 14:55</p>
+                </div>
+            </aside>
+        </article>
+    </main>
+
+
+    <footer>
+        <div id="footer-placeholder"></div> <!-- Footer placeholder -->
+    </footer>
+</body>
+
+</html>

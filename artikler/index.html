@@ -32,88 +32,88 @@
         <section class="article-list">
             <div class="container">
                 <h2 class="section-title">Artikler</h2>
-                <div class="row">
-                    <div class="col-md-6 pl-md-3 pr-md-3">
-                        <div class="article-box" onclick="location.href='article.html';">
-                            <div class="article-thumbnail">
-                                <img src="images/garden.jpg" alt="Article Thumbnail">
-                            </div>
-
-                            <div class="article-content">
-                                <h3 class="article-title">Artikkel tittel</h3>
-                                <p class="article-subtitle">Artikkel undertittel</p>
-                                <p class="article-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Sed
-                                    vel ligula est. Donec eu risus auctor, viverra felis at, tristique tortor. Sed
-                                    feugiat, massa a cursus fringilla, neque mauris vestibulum dolor, ac pretium
-                                    justo
-                                    mi at nulla.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Additional article boxes -->
-                    <div class="col-md-6 pl-md-3 pr-md-3">
-                        <div class="article-box" onclick="location.href='article.html';">
-                            <div class="article-thumbnail">
-                                <img src="images/garden.jpg" alt="Article Thumbnail">
-                            </div>
-
-                            <div class="article-content">
-                                <h3 class="article-title">Artikkel tittel</h3>
-                                <p class="article-subtitle">Artikkel undertittel</p>
-                                <p class="article-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Sed
-                                    vel ligula est. Donec eu risus auctor, viverra felis at, tristique tortor. Sed
-                                    feugiat, massa a cursus fringilla, neque mauris vestibulum dolor, ac pretium
-                                    justo
-                                    mi at nulla.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 pl-md-3 pr-md-3">
-                        <div class="article-box" onclick="location.href='article.html';">
-                            <div class="article-thumbnail">
-                                <img src="images/garden.jpg" alt="Article Thumbnail">
-                            </div>
-
-                            <div class="article-content">
-                                <h3 class="article-title">Artikkel tittel</h3>
-                                <p class="article-subtitle">Artikkel undertittel</p>
-                                <p class="article-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Sed
-                                    vel ligula est. Donec eu risus auctor, viverra felis at, tristique tortor. Sed
-                                    feugiat, massa a cursus fringilla, neque mauris vestibulum dolor, ac pretium
-                                    justo
-                                    mi at nulla.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 pl-md-3 pr-md-3">
-                        <div class="article-box" onclick="location.href='article.html';">
-                            <div class="article-thumbnail">
-                                <img src="images/garden.jpg" alt="Article Thumbnail">
-                            </div>
-
-                            <div class="article-content">
-                                <h3 class="article-title">Artikkel tittel</h3>
-                                <p class="article-subtitle">Artikkel undertittel</p>
-                                <p class="article-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Sed
-                                    vel ligula est. Donec eu risus auctor, viverra felis at, tristique tortor. Sed
-                                    feugiat, massa a cursus fringilla, neque mauris vestibulum dolor, ac pretium
-                                    justo
-                                    mi at nulla.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row" id="article-container">
+                    <!-- Article boxes will be dynamically generated here -->
                 </div>
             </div>
         </section>
     </main>
 
+    <script>
+        // Fetch the article files in the same folder
+        fetchArticles();
+
+        // Function to fetch the article files and generate article boxes
+        function fetchArticles() {
+            // Fetch the article files using a method of your choice (e.g., AJAX, Fetch API)
+            // Replace the placeholder URL with the actual URL or adjust the method as needed
+            fetch("./")
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const htmlDoc = parser.parseFromString(data, "text/html");
+                    const articles = Array.from(htmlDoc.querySelectorAll("a[href$='.html']"));
+
+                    // Log the fetched articles for debugging
+                    console.log("Fetched articles:", articles);
+
+                    // Generate article boxes
+                    const articleContainer = document.getElementById("article-container");
+                    articles.forEach(article => {
+                        const articlePath = article.getAttribute("href");
+                        const articleBox = createArticleBox(articlePath);
+                        articleContainer.appendChild(articleBox);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching articles:", error);
+                });
+        }
+
+        // Function to create an article box with provided article path
+        function createArticleBox(articlePath) {
+            const articleBox = document.createElement("div");
+            articleBox.className = "col-md-6 pl-md-3 pr-md-3";
+            articleBox.innerHTML = `
+                <div class="article-box" onclick="location.href='${articlePath}';">
+                    <div class="article-thumbnail">
+                        <img src="images/garden.jpg" alt="Article Thumbnail">
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Loading...</h3>
+                        <p class="article-subtitle">Loading...</p>
+                        <p class="article-excerpt">Loading...</p>
+                    </div>
+                </div>
+            `;
+
+            // Fetch the article file to populate the article box content
+            fetch(articlePath)
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const htmlDoc = parser.parseFromString(data, "text/html");
+
+                    // Get the article title, subtitle, and excerpt
+                    const title = htmlDoc.querySelector("h1").textContent;
+                    const subtitle = htmlDoc.querySelector("h2").textContent;
+                    const excerpt = htmlDoc.querySelector(".article-text").textContent;
+
+                    // Update the article box content
+                    const articleTitle = articleBox.querySelector(".article-title");
+                    const articleSubtitle = articleBox.querySelector(".article-subtitle");
+                    const articleExcerpt = articleBox.querySelector(".article-excerpt");
+                    articleTitle.textContent = title;
+                    articleSubtitle.textContent = subtitle;
+                    articleExcerpt.textContent = excerpt;
+                })
+                .catch(error => {
+                    console.error(`Error fetching article (${articlePath}):`, error);
+                });
+
+            return articleBox;
+        }
+    </script>
 
     <div id="footer-placeholder"></div>
 </body>

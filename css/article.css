@@ -1,0 +1,148 @@
+.article-content {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.article-content h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.article-content h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    line-height: 30px;
+}
+
+.article-text h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.article-image {
+    margin-bottom: 20px;
+}
+
+.article-image img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.image-description {
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.article-text p {
+    margin-bottom: 10px;
+}
+
+main {
+    padding-top: 70px;
+    /* Adjust this value as needed */
+}
+
+article .article-text p {
+    line-height: 2;
+    margin: 40px;
+    font-size: larger;
+}
+
+article {
+    display: flex;
+    align-items: flex-start;
+}
+
+.article-content {
+    flex: 1;
+    margin-right: 0;
+}
+
+.author-info {
+    margin-top: 50px;
+    margin-left: 20px;
+    flex-shrink: 0;
+    margin-right: auto;
+}
+
+.author-image img {
+    width: 75px;
+    border-radius: 50%;
+}
+
+.author-info p {
+    margin-right: 20px;
+}
+
+.author-name p {
+    margin-bottom: 0;
+}
+
+.share-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.share-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #6f2644;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+    margin-left: 0;
+    margin-right: auto;
+    text-decoration: none;
+}
+
+.share-buttons a i {
+    color: #6f2644;
+    font-size: 20px;
+}
+
+.share-buttons a:hover {
+    background-color: #6f2644;
+}
+
+.share-buttons a:hover i {
+    color: #fff;
+}
+
+/* Media query for screens with maximum width of 800px */
+@media (max-width: 800px) {
+    main {
+        padding-top: 43px;
+    }
+
+    article {
+        flex-direction: column;
+    }
+
+    .author-info {
+        align-self: flex-start;
+        margin-top: -20px;
+        margin-bottom: -80px;
+        margin-left: auto;
+    }
+
+    .share-buttons {
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+
+    .share-buttons a {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-right: 25px;
+    }
+
+}

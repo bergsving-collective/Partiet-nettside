@@ -40,80 +40,80 @@
     </main>
 
     <script>
-        // Fetch the article files in the same folder
-        fetchArticles();
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchArticleFiles();
+        });
 
-        // Function to fetch the article files and generate article boxes
-        function fetchArticles() {
-            // Fetch the article files using a method of your choice (e.g., AJAX, Fetch API)
-            // Replace the placeholder URL with the actual URL or adjust the method as needed
-            fetch("./")
-                .then(response => response.text())
-                .then(data => {
-                    const parser = new DOMParser();
-                    const htmlDoc = parser.parseFromString(data, "text/html");
-                    const articles = Array.from(htmlDoc.querySelectorAll("a[href$='.html']"));
+        async function fetchArticleFiles() {
+            try {
+                const response = await fetch('/getArticles');
+                const articleFiles = await response.json();
 
-                    // Log the fetched articles for debugging
-                    console.log("Fetched articles:", articles);
+                console.log('Article Files:', articleFiles);
 
-                    // Generate article boxes
-                    const articleContainer = document.getElementById("article-container");
-                    articles.forEach(article => {
-                        const articlePath = article.getAttribute("href");
-                        const articleBox = createArticleBox(articlePath);
-                        articleContainer.appendChild(articleBox);
+                if (articleFiles.length === 0) {
+                    console.log('No articles found.');
+                } else {
+                    console.log('Displaying article boxes...');
+                }
+
+                displayArticleBoxes(articleFiles);
+            } catch (error) {
+                console.error('Error fetching article files:', error);
+            }
+        }
+
+
+        function displayArticleBoxes(articleFiles) {
+            const articleList = document.querySelector('.article-list .row');
+
+            if (articleFiles.length === 0) {
+                console.log('No articles found.');
+                articleList.innerHTML = '<p>No articles found.</p>';
+                return;
+            }
+
+            let articleBoxesHTML = '';
+
+            articleFiles.forEach(file => {
+                fetch(file)
+                    .then(response => response.text())
+                    .then(articleText => {
+                        const parser = new DOMParser();
+                        const articleDoc = parser.parseFromString(articleText, 'text/html');
+
+                        const articleTitle = articleDoc.querySelector('h1')?.textContent || 'Article Title';
+                        const articleSubtitle = articleDoc.querySelector('h2')?.textContent || 'Article Subtitle';
+                        const articleExcerpt = articleDoc.querySelector('.article-text')?.textContent || 'Article Excerpt';
+                        const articleThumbnail = articleDoc.querySelector('img')?.getAttribute('src') || 'images/garden.jpg';
+
+                        const articleBoxHTML = `
+                    <div class="col-md-6 pl-md-3 pr-md-3">
+                        <div class="article-box" onclick="location.href='${file}';">
+                            <div class="article-thumbnail">
+                                <img src="${articleThumbnail}" alt="Article Thumbnail">
+                            </div>
+    
+                            <div class="article-content">
+                                <h3 class="article-title">${articleTitle}</h3>
+                                <p class="article-subtitle">${articleSubtitle}</p>
+                                <p class="article-excerpt">${articleExcerpt}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                        articleBoxesHTML += articleBoxHTML;
+                        articleList.innerHTML = articleBoxesHTML;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching article:', error);
                     });
-                })
-                .catch(error => {
-                    console.error("Error fetching articles:", error);
-                });
+            });
         }
 
-        // Function to create an article box with provided article path
-        function createArticleBox(articlePath) {
-            const articleBox = document.createElement("div");
-            articleBox.className = "col-md-6 pl-md-3 pr-md-3";
-            articleBox.innerHTML = `
-                <div class="article-box" onclick="location.href='${articlePath}';">
-                    <div class="article-thumbnail">
-                        <img src="images/garden.jpg" alt="Article Thumbnail">
-                    </div>
-                    <div class="article-content">
-                        <h3 class="article-title">Loading...</h3>
-                        <p class="article-subtitle">Loading...</p>
-                        <p class="article-excerpt">Loading...</p>
-                    </div>
-                </div>
-            `;
-
-            // Fetch the article file to populate the article box content
-            fetch(articlePath)
-                .then(response => response.text())
-                .then(data => {
-                    const parser = new DOMParser();
-                    const htmlDoc = parser.parseFromString(data, "text/html");
-
-                    // Get the article title, subtitle, and excerpt
-                    const title = htmlDoc.querySelector("h1").textContent;
-                    const subtitle = htmlDoc.querySelector("h2").textContent;
-                    const excerpt = htmlDoc.querySelector(".article-text").textContent;
-
-                    // Update the article box content
-                    const articleTitle = articleBox.querySelector(".article-title");
-                    const articleSubtitle = articleBox.querySelector(".article-subtitle");
-                    const articleExcerpt = articleBox.querySelector(".article-excerpt");
-                    articleTitle.textContent = title;
-                    articleSubtitle.textContent = subtitle;
-                    articleExcerpt.textContent = excerpt;
-                })
-                .catch(error => {
-                    console.error(`Error fetching article (${articlePath}):`, error);
-                });
-
-            return articleBox;
-        }
     </script>
+
 
     <div id="footer-placeholder"></div>
 </body>

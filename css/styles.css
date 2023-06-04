@@ -1,0 +1,274 @@
+body {
+    padding-top: 70px;
+    /* Add space to the top of the page to prevent content from being hidden under the fixed navbar */
+}
+
+.navbar.fixed-top {
+    transition: padding 0.2s;
+    /* Add smooth transition effect */
+}
+
+.navbar.fixed-top.navbar-scrolled {
+    padding-top: 10px;
+    /* Reduce the top padding when the navbar is scrolled */
+    padding-bottom: 10px;
+    /* Reduce the bottom padding when the navbar is scrolled */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Optionally, change the background color when scrolled */
+}
+
+/* Custom CSS for the navbar */
+nav.navbar {
+    background-color: white !important;
+    /* Set the background color to white */
+    border-bottom: 1px solid #ccc !important;
+    /* Add a thin grey border line at the bottom */
+    padding: 20px;
+    /* Increase the padding to scale up the navbar */
+}
+
+nav.navbar .navbar-logo {
+    max-height: 60px;
+    /* Increase the maximum height to scale up the logo */
+    max-width: 100%;
+    /* Ensure the logo image scales proportionally */
+    margin-right: 20px;
+    /* Add margin to create space between the logo and links */
+}
+
+nav.navbar .navbar-nav .nav-link {
+    color: #6f2644 !important;
+    /* Set the text color to purple */
+    font-size: 20px;
+    /* Increase the font size to scale up the navbar links */
+    margin-right: 25px;
+    /* Increase the right margin to space out the links */
+    height: 100%;
+}
+
+nav.navbar .navbar-nav .nav-link:hover,
+nav.navbar .navbar-nav .nav-link:focus {
+    background-color: #6f2644 !important;
+    /* Set the hover and focus background color to purple */
+    color: white !important;
+    /* Set the text color to white on hover and focus */
+}
+
+* {
+    font-family: 'Noto Serif', serif;
+}
+
+/* Add left margin to collapsed navbar text */
+@media (max-width: 991.98px) {
+    .navbar-nav .nav-link {
+        margin-left: 10px;
+    }
+}
+
+.first-section {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+}
+
+section {
+
+    margin-top: 40px;
+    margin-bottom: 70px;
+}
+
+.section-image {
+    width: 100%;
+    height: auto;
+}
+
+.section-content {
+    padding: 20px;
+    background-color: #6f2644;
+    color: #fff;
+}
+
+.section-content h2 {
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.section-content p {
+    font-size: 16px;
+}
+
+@media (max-width: 991.98px) {
+
+    .navbar-nav .nav-link span,
+    .navbar-nav .nav-item .nav-link i {
+        margin-left: 10px;
+    }
+
+    .navbar-nav .nav-link {
+        margin-top: 10px;
+    }
+}
+
+.text-purple {
+    color: #6f2644;
+}
+
+.topic-box {
+    background-color: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+}
+
+.topic-box h3 {
+    color: #333;
+}
+
+.topic-box p {
+    color: #666;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.topic-image {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.footer {
+    background-color: #f9f9f9;
+    padding: 40px 0;
+    color: #333;
+    margin-top: 100px;
+}
+
+.footer h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer p {
+    margin-bottom: 20px;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer ul li {
+    margin-bottom: 5px;
+}
+
+.social-media li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-media a {
+    color: #333;
+}
+
+.image-description {
+    color: #888;
+    font-style: italic;
+}
+
+
+/* CSS styles for article list */
+.article-list {
+    padding: 50px 0;
+}
+
+.section-title {
+    text-align: center;
+}
+
+.article-box {
+    display: flex;
+    margin-bottom: 30px;
+    max-width: 100%;
+    /* Limit the width of the article box */
+    overflow: hidden;
+    /* Hide any content that exceeds the width */
+}
+
+.article-thumbnail {
+    width: 100%;
+    height: 0;
+    padding-bottom: 20%;
+    /* 5 times the width */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.article-thumbnail img {
+    width: 100%;
+    min-width: 121px;
+    min-height: 121px;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+}
+
+.article-content {
+    flex-shrink: 1;
+    padding: 0 20px;
+    overflow: hidden;
+    /* Hide any content that exceeds the width */
+}
+
+
+.article-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.article-subtitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.article-excerpt {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Set the number of lines you want to display */
+    -webkit-box-orient: vertical;
+    line-height: 1.5;
+    /* Adjust the line height as needed */
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f8f9fa;
+    border: none;
+    color: #6c757d;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e9ecef;
+}
+
+.article-box {
+    background-color: #f2f2f2;
+    cursor: pointer;
+    padding: 20px;
+    padding-bottom: 20px;
+}

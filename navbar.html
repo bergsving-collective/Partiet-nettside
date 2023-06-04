@@ -1,0 +1,51 @@
+<!-- navbar.html -->
+<script src="../js/jquery-3.7.0.min.js"></script>
+<script src="../node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+    <a class="navbar-brand" href="../">
+        <img src="../images/logo.png" alt="Party Logo" class="navbar-logo">
+    </a>
+
+    <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars fa-xl" style="color: #6f2644;"></i>
+    </button>
+
+    <!-- Don't remove, doesn't work without. Don't ask why. -->
+    <style>
+        .navbar-toggler {
+            border-color: transparent;
+            font-size: 24px;
+        }
+
+        .navbar-toggler:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="../partiprogram"><span>Partiprogram</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../artikler"><span>Artikler</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../kontakt"><span>Kontakt</span></a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="sok">
+                    <i class="fas fa-search"></i> <span>Søk</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

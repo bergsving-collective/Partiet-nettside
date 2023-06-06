@@ -1,0 +1,9 @@
+/* Center the search bar and title */
+#search-form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: center;
+}

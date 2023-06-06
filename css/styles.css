@@ -272,3 +272,53 @@ section {
     padding: 20px;
     padding-bottom: 20px;
 }
+
+/* ... */
+
+.search-section {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+}
+
+.search-section .section-title {
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    font-size: 16px;
+}
+
+.search-bar button {
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.search-bar button i {
+    font-size: 18px;
+}
+
+.article-list {
+    padding: 50px 0;
+}
+
+/* ... */

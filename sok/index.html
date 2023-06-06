@@ -5,11 +5,101 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.0.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
+    <link rel="manifest" href="../favicons/site.webmanifest">
+    <script src="../js/script.js"></script>
+
+    <title>Søk - Partiet</title>
 </head>
 
 <body>
+    <div id="navbar-placeholder"></div>
+    <h1>Search Page</h1>
 
+    <form id="search-form" action="/searchArticles" method="GET">
+        <input type="text" id="search-input" name="query" placeholder="Search articles..." required>
+        <button type="submit">Search</button>
+    </form>
+
+
+    <div id="search-results">
+        <div class="article-list">
+            <div class="row"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            const searchQuery = document.getElementById('search-input').value;
+
+            try {
+                const response = await fetch(`/searchArticles?query=${searchQuery}`);
+                const searchResults = await response.json();
+
+                // Display the search results
+                displaySearchResults(searchResults);
+            } catch (error) {
+                console.error('Error fetching search results:', error);
+            }
+        });
+
+        function displaySearchResults(searchResults) {
+            const articleList = document.querySelector('.article-list .row');
+
+            if (searchResults.length === 0) {
+                console.log('No results found.');
+                articleList.innerHTML = '<p>No results found.</p>';
+                return;
+            }
+
+            let articleBoxesHTML = '';
+
+            searchResults.forEach(result => {
+                const { file, matches } = result;
+                const fileName = file.replace('.html', '');
+                const articleBoxHTML = `
+                    <div class="col-md-6 pl-md-3 pr-md-3">
+                        <div class="article-box" onclick="location.href='../artikler/${file}';">
+                            <div class="article-thumbnail">
+                                <img src="${matches[2]}" alt="Article Thumbnail">
+                            </div>
+
+                            <div class="article-content">
+                                <h3 class="article-title">${fileName}</h3>
+                                <p class="article-subtitle">${matches[0]}</p>
+                                <p class="article-excerpt">${matches[1]}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                articleBoxesHTML += articleBoxHTML;
+            });
+
+            console.log('Article boxes HTML:', articleBoxesHTML);
+
+            articleList.innerHTML = articleBoxesHTML;
+        }
+
+    </script>
+
+    <div id="footer-placeholder"></div>
 </body>
 
 </html>

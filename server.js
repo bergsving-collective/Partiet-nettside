@@ -26,8 +26,16 @@ app.get('/getArticles', (req, res) => {
     });
 });
 
+
+
+
 app.get('/searchArticles', (req, res) => {
-    const searchTerm = req.query.term; // Changed 'query' to 'term'
+    const searchQuery = req.query.term;
+
+    if (!searchQuery || typeof searchQuery !== 'string') {
+        res.status(400).send('Invalid search query');
+        return;
+    }
 
     const articlesDir = path.join(__dirname, 'artikler');
     fs.readdir(articlesDir, (err, files) => {
@@ -58,9 +66,9 @@ app.get('/searchArticles', (req, res) => {
             const imageUrl = imageElement ? imageElement.src : '';
 
             if (
-                title.toLowerCase().includes(searchTerm.toLowerCase()) || // Changed 'searchQuery' to 'searchTerm'
-                subtitle.toLowerCase().includes(searchTerm.toLowerCase()) || // Changed 'searchQuery' to 'searchTerm'
-                content.toLowerCase().includes(searchTerm.toLowerCase()) // Changed 'searchQuery' to 'searchTerm'
+                title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                content.toLowerCase().includes(searchQuery.toLowerCase())
             ) {
                 searchResults.push({
                     file,
@@ -75,6 +83,7 @@ app.get('/searchArticles', (req, res) => {
         res.json(searchResults);
     });
 });
+
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);

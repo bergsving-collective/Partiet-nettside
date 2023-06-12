@@ -1,11 +1,9 @@
-/* Reset default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Set global styles */
 body {
     font-family: 'Noto Serif', serif;
 }
@@ -120,11 +118,8 @@ section {
     width: 400px;
 }
 
-/******* Fonts Import Start **********/
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-/********* Fonts Face CSS End **********/
 
-/******* Common Element CSS Start ******/
 * {
     margin: 0px;
     padding: 0px;
@@ -189,10 +184,6 @@ button {
     outline: none !important;
 }
 
-/******* Common Element CSS End *********/
-
-/******* Middle section CSS Start ******/
-/* -------- Landing page ------- */
 #section3 {
     padding: 0;
     padding-top: 70px;
@@ -279,9 +270,6 @@ section .owl-theme.custom-carousel .owl-dots {
     z-index: 5;
 }
 
-/******** Middle section CSS End *******/
-
-/***** responsive css Start ******/
 
 @media (min-width: 992px) and (max-width: 1199px) {
     h2 {
@@ -294,7 +282,6 @@ section .owl-theme.custom-carousel .owl-dots {
         line-height: 32px;
     }
 
-    /* -------- Landing page ------- */
     section {
         padding: 50px 30px;
     }
@@ -330,7 +317,6 @@ section .owl-theme.custom-carousel .owl-dots {
         width: 330px;
     }
 
-    /* -------- Landing page ------- */
     section {
         padding: 50px 30px 40px;
     }
@@ -370,7 +356,6 @@ section .owl-theme.custom-carousel .owl-dots {
         width: 250px;
     }
 
-    /* -------- Landing page ------- */
     section {
         padding: 30px 15px 20px;
     }

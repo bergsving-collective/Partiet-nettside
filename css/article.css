@@ -42,7 +42,6 @@
 
 main {
     padding-top: 70px;
-    /* Adjust this value as needed */
 }
 
 article .article-text p {
@@ -116,7 +115,6 @@ article {
     color: #fff;
 }
 
-/* Media query for screens with maximum width of 800px */
 @media (max-width: 800px) {
     main {
         padding-top: 43px;

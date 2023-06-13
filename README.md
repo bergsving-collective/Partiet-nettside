@@ -1,12 +1,6 @@
 # Partiet-nettside
 Dette er GitHub-repositoriet for nettsiden til Partiet. Nettsiden er utviklet for å presentere informasjon om partiet, dets politikk og aktiviteter. Den gir også en plattform for medlemmer og interesserte til å holde seg oppdatert med nyheter og artikler fra partiet. **Vennligst merk at ytringer og meninger på nettsiden ikke nødvendigvis reflekterer nettutviklers politiske synspunkt.**
 
-## Innhold
-- Om Partiet
-- Teknologi
-- Bidra
-- Kontakt
-
 # Teknologi
 Nettsiden er utviklet ved hjelp av følgende teknologier og verktøy:
 

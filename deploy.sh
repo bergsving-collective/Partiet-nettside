@@ -24,7 +24,7 @@ systemctl restart apache2
 
 # Clean up unnecessary files or caches, if applicable
 # For example, if you use a PHP caching mechanism like OPCache, you may want to clear it:
-php -r 'opcache_reset();'
+# php -r 'opcache_reset();'
 
 # Run database migrations, if applicable
 # For example, if you use Laravel, you might run:

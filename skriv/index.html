@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.0.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
+    <link rel="manifest" href="../favicons/site.webmanifest">
+    <script src="../js/script.js"></script>
+    <link rel="stylesheet" href="editor.css">
+    <title>Opprett nytt innlegg</title>
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <div class="newPost">
+        <h3>Opprett nytt innlegg</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" class="form-control form-control-lg title-input" placeholder="Skriv tittel her"
+                    style="font-size: 24px; color: black; height: 40px; border-radius: 0; border: 1px solid #ccc;">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" class="form-control subtitle-input" placeholder="Skriv undertittel her"
+                    style="font-size: 18px; color: black; height: 35px; border-radius: 0; border: 1px solid #ccc;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" class="form-control image-input" placeholder="Lim inn bilde-URL her"
+                    style="font-size: 18px; color: grey; height: 35px; border-radius: 0; border: 1px solid #ccc;"
+                    data-func="image-source">
+                <p class="fst-italic" style="margin-top: -20px;">NB: Vær forsiktig med å bruke bilder som ikke er
+                    markert for gjenbruk!</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="image-credits" style="margin-right: 10px;">Fotokilde:</label>
+                    <input type="text" class="form-control image-credits-input"
+                        placeholder="Skriv bildekreditering her (navn/organisasjon)"
+                        style="font-size: 16px; color: black; height: 30px; border-radius: 0; border: 1px solid #ccc;"
+                        id="image-credits">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" class="form-control image-description-input" placeholder="Skriv bildetekst her"
+                    style="font-size: 16px; color: black; height: 30px; border-radius: 0; border: 1px solid #ccc;">
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <button type="button" data-func="bold"><i class="fa fa-bold"></i></button>
+            <button type="button" data-func="italic"><i class="fa fa-italic"></i></button>
+            <button type="button" data-func="underline"><i class="fa fa-underline"></i></button>
+            <button type="button" data-func="justifyleft"><i class="fa fa-align-left"></i></button>
+            <button type="button" data-func="justifycenter"><i class="fa fa-align-center"></i></button>
+            <button type="button" data-func="justifyright"><i class="fa fa-align-right"></i></button>
+            <button type="button" data-func="insertunorderedlist"><i class="fa fa-list-ul"></i></button>
+            <button type="button" data-func="insertorderedlist"><i class="fa fa-list-ol"></i></button>
+            <div class="customSelect">
+                <select data-func="formatblock">
+                    <option value="h1">Heading 1</option>
+                    <option value="h2">Heading 2</option>
+                    <option value="h4">Subtitle</option>
+                    <option value="p" selected>Paragraph</option>
+                </select>
+            </div>
+        </div>
+        <div class="editor" contenteditable></div>
+        <div class="buttons">
+            <button data-func="save" type="button"><span class="small">Lagre kladd</span></button>
+            <button class="button" data-func="vis-json" type="button"><span class="fa-xs">Last ned JSON</span></button>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+    <script src="../js/editor.js"></script>
+</body>
+
+</html>

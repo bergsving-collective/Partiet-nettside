@@ -1,0 +1,16 @@
+h1 {
+    font-size: 7rem;
+    max-width: 70vw;
+    color: #6f2644;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+
+.text-container {
+    margin: 20% auto;
+
+}

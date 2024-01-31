@@ -20,6 +20,9 @@ body {
     min-width: 480px;
     background: #fff;
     font-family: 'Asap', sans-serif;
+    box-shadow: 3px 4px 6px 0px rgba(0, 0, 0, 0.39);
+    -webkit-box-shadow: 3px 4px 6px -0px rgba(0, 0, 0, 0.39);
+    -moz-box-shadow: 3px 4px 6px 0px rgba(0, 0, 0, 0.39);
 }
 
 .newPost h3 {

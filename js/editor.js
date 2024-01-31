@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     visJsonButton.addEventListener("click", function () {
+        const id = Math.floor(10000000 + Math.random() * 90000000).toString();
+
         const title = document.querySelector(".title-input").value;
         const subtitle = document.querySelector(".subtitle-input").value;
         const image = document.querySelector(".image-input").value;
@@ -45,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const content = document.querySelector(".editor").innerHTML;
 
         const article = {
+            id: id,
             title: title,
             subtitle: subtitle,
             image: image,
@@ -62,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create a temporary anchor element
         const a = document.createElement("a");
         a.href = URL.createObjectURL(blob);
-        a.download = `${title}.json`;
+        a.download = `${id}.json`;
         a.click();
 
         // Clean up

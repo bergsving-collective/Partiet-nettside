@@ -1,16 +1,42 @@
 h1 {
     font-size: 7rem;
+    width: auto;
     max-width: 70vw;
     color: #6f2644;
 }
 
 h2 {
     text-align: center;
-    margin-top: 2rem;
+    margin: 2rem 100%;
     font-size: 2rem;
 }
 
 .text-container {
-    margin: 20% auto;
+    margin: 20%;
 
+}
+
+/* Custom styles for the button */
+.custom-button {
+    color: #6f2644;
+    /* Text color */
+    border-color: #6f2644;
+    /* Outline color */
+    background-color: transparent;
+    /* Transparent background */
+    transition: background-color 0.3s, color 0.3s;
+    /* Transition effect */
+}
+
+/* Remove Bootstrap's blue outline on focus and active states */
+.custom-button:focus,
+.custom-button:active {
+    box-shadow: none;
+    outline: none;
+}
+
+/* Hover effect: Invert colors */
+.custom-button:hover {
+    color: white;
+    background-color: #6f2644;
 }

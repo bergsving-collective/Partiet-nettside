@@ -62,8 +62,7 @@
             }
         }
 
-
-        function displayArticleBoxes(articleFiles) {
+        async function displayArticleBoxes(articleFiles) {
             const articleList = document.querySelector('.article-list .row');
 
             if (articleFiles.length === 0) {
@@ -74,41 +73,44 @@
 
             let articleBoxesHTML = '';
 
-            articleFiles.forEach(file => {
-                fetch(file)
-                    .then(response => response.text())
-                    .then(articleText => {
-                        const parser = new DOMParser();
-                        const articleDoc = parser.parseFromString(articleText, 'text/html');
+            for (const file of articleFiles) {
+                try {
+                    const response = await fetch(`/artikler/json/${file}`);
+                    const article = await response.json();
 
-                        const articleTitle = articleDoc.querySelector('h1')?.textContent || 'Article Title';
-                        const articleSubtitle = articleDoc.querySelector('h2')?.textContent || 'Article Subtitle';
-                        const articleExcerpt = articleDoc.querySelector('.article-text')?.textContent || 'Article Excerpt';
-                        const articleThumbnail = articleDoc.querySelector('img')?.getAttribute('src') || 'images/garden.jpg';
+                    const articleId = article.id || 'Article ID';
+                    const articleTitle = article.title || 'Article Title';
+                    const articleSubtitle = article.subtitle || 'Article Subtitle';
+                    const articleContent = article.content || 'Article Content'; // You might want to provide a default value
+                    const articleThumbnail = article.image || 'images/garden.jpg'; // Assuming image property in JSON
 
-                        const articleBoxHTML = `
-                    <div class="col-md-6 pl-md-3 pr-md-3">
-                        <div class="article-box" onclick="location.href='${file}';">
-                            <div class="article-thumbnail">
-                                <img src="${articleThumbnail}" alt="Article Thumbnail">
-                            </div>
-    
-                            <div class="article-content">
-                                <h3 class="article-title">${articleTitle}</h3>
-                                <p class="article-subtitle">${articleSubtitle}</p>
-                                <p class="article-excerpt">${articleExcerpt}</p>
+                    // Limit the excerpt to two lines of text before ending with trailing dots
+                    const excerptLines = articleContent.split('\n').slice(0, 2);
+                    const articleExcerpt = excerptLines.join(' ').slice(0, 100) + '...'; // Adjust the character limit as needed
+
+                    const articleBoxHTML = `
+                        <div class="col-md-6 pl-md-3 pr-md-3">
+                            <div class="article-box" onclick="location.href='/artikler/${articleId}';">
+                                <div class="article-thumbnail">
+                                    <img src="${articleThumbnail}" alt="Article Thumbnail">
+                                </div>
+
+                                <div class="article-content">
+                                    <h3 class="article-title">${articleTitle}</h3>
+                                    <p class="article-subtitle">${articleSubtitle}</p>
+                                    <p class="article-excerpt">${articleExcerpt}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
+                    `;
 
-                        articleBoxesHTML += articleBoxHTML;
-                        articleList.innerHTML = articleBoxesHTML;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching article:', error);
-                    });
-            });
+                    articleBoxesHTML += articleBoxHTML;
+                } catch (error) {
+                    console.error(`Error fetching article "${file}":`, error);
+                }
+            }
+
+            articleList.innerHTML = articleBoxesHTML;
         }
 
     </script>

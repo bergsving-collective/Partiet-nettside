@@ -53,24 +53,17 @@
     <script src="../js/script.js"></script>
 
     <script>
-        // Get the input field
-        var input = document.getElementById("search-input");
-
-        // Execute a function when the user presses a key on the keyboard
-        input.addEventListener("keypress", function (event) {
-            // If the user presses the "Enter" key on the keyboard
-            if (event.key === "Enter") {
-                // Cancel the default action, if needed
-                event.preventDefault();
-                // Trigger the button element with a click
-                document.getElementById("search-button").click();
-            }
-        });
-
-
         document.addEventListener('DOMContentLoaded', function () {
             const searchButton = document.getElementById('search-button');
             searchButton.addEventListener('click', searchArticles);
+
+            const input = document.getElementById("search-input");
+            input.addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    searchArticles();
+                }
+            });
         });
 
         async function searchArticles() {
@@ -101,11 +94,11 @@
         }
 
         function clearSearchResults() {
-            const searchResults = document.getElementById('search-results');
-            searchResults.innerHTML = '';
+            const searchResultsContainer = document.getElementById('search-results');
+            searchResultsContainer.innerHTML = '';
         }
 
-        function displaySearchResults(searchResults) {
+        async function displaySearchResults(searchResults) {
             const searchResultsContainer = document.getElementById('search-results');
 
             if (searchResults.length === 0) {
@@ -116,21 +109,23 @@
 
             let searchResultsHTML = '';
 
-            searchResults.forEach(file => {
-                fetch(`/artikler/${file.file}`)
-                    .then(response => response.text())
-                    .then(articleText => {
-                        const parser = new DOMParser();
-                        const articleDoc = parser.parseFromString(articleText, 'text/html');
+            for (const file of searchResults) {
+                try {
+                    const response = await fetch(`/artikler/json/${file}`);
+                    const article = await response.json();
 
-                        const articleTitle = articleDoc.querySelector('h1')?.textContent || 'Article Title';
-                        const articleSubtitle = articleDoc.querySelector('h2')?.textContent || 'Article Subtitle';
-                        const articleExcerpt = articleDoc.querySelector('.article-text')?.textContent || 'Article Excerpt';
-                        const articleThumbnail = articleDoc.querySelector('img')?.getAttribute('src') || ''; // Replace with the actual image URL
+                    const articleTitle = article.title || 'Article Title';
+                    const articleSubtitle = article.subtitle || 'Article Subtitle';
+                    const articleContent = article.content || 'Article Content'; // You might want to provide a default value
+                    const articleThumbnail = article.image || ''; // Replace with the actual image URL
 
-                        const articleHTML = `
+                    // Limit the excerpt to two lines of text before ending with trailing dots
+                    const excerptLines = articleContent.split('\n').slice(0, 2);
+                    const articleExcerpt = excerptLines.join(' ').slice(0, 150) + '...'; // Adjust the character limit as needed
+
+                    const articleHTML = `
     <div class="col-lg-6">
-        <div class="article-box">
+        <div class="article-box" onclick="location.href='/artikler/${file.replace('.json', '')}';">
             <div class="article-thumbnail">
                 <img src="${articleThumbnail}" alt="Article Thumbnail">
             </div>
@@ -143,15 +138,13 @@
     </div>
 `;
 
+                    searchResultsHTML += articleHTML;
+                } catch (error) {
+                    console.error(`Error fetching article "${file}":`, error);
+                }
+            }
 
-
-                        searchResultsHTML += articleHTML;
-                        searchResultsContainer.innerHTML = searchResultsHTML;
-                    })
-                    .catch(error => {
-                        console.error('Error loading article:', error);
-                    });
-            });
+            searchResultsContainer.innerHTML = searchResultsHTML;
         }
     </script>
 

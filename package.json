@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +17,5 @@
     "jsdom": "^22.1.0",
     "swiper": "^9.3.2"
   },
-  "description": ""
+  "description": "Dette er GitHub-repositoriet for nettsiden til Partiet. Nettsiden er utviklet for å presentere informasjon om partiet, dets politikk og aktiviteter. Den gir også en plattform for medlemmer og interesserte til å holde seg oppdatert med nyheter og artikler fra partiet. **Vennligst merk at ytringer og meninger på nettsiden ikke nødvendigvis reflekterer nettutviklers politiske synspunkt.**"
 }
